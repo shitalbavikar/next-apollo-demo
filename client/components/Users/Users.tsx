@@ -13,20 +13,9 @@ export const Users = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_USERS_INFO, {
     variables: { after: null }
   });
-  const handleLoadMoreClick = (event: any) => {
-    console.log(messageRef.current && messageRef.current.contains(event.target));
-    if (messageRef.current && messageRef.current.contains(event.target)) {
-      messageRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth',  inline: "start" });
-    }
-  }
- 
-  useEffect(() => {
-    document.addEventListener('click', handleLoadMoreClick, true);
-    return () => {
-        document.removeEventListener('click', handleLoadMoreClick, true);
-    };
-}, []);
-
+  
+  useEffect(() => messageRef.current?.scrollIntoView({behavior: "smooth"}));
+  
   const loadMoreUsersHandler = () => {
     const {endCursor} = data.users.pageInfo;
       
@@ -50,14 +39,15 @@ export const Users = () => {
       return (
         <React.Fragment>
           {/* <Suspense fallback={<Spinner />}> */}
-              <div className={styles.usersWrapper}>
-                  {data.users.edges.map((user: any) => { 
-                  return <UserCard key={uniqid()} userInfo = {user.node}/> })}
-              </div>
-            {/* </Suspense> */}
-          <div className={styles.userActions} ref={messageRef}>
-            <button className= {styles.loadMoreButton} onClick={() => loadMoreUsersHandler()}> Load more..</button>
-          </div>
+            <h3 className={styles.usersListTitle} data-test="users-list-title">Users List</h3>
+            <div className={styles.usersWrapper} data-test="users-list-wrapper">
+                {data.users.edges.map(user => { 
+                return <UserCard key={uniqid()} userInfo = {user.node}/> })}
+            </div>
+          {/* </Suspense> */}
+            <div className={styles.userActions} ref={messageRef}>
+              <button className={styles.loadMoreButton} onClick={() => loadMoreUsersHandler()}>Load more</button>
+            </div>
         </React.Fragment>
       );
   }
