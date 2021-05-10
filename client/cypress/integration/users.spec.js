@@ -15,7 +15,7 @@ describe('Cypress', () => {
     describe('Users page', () => {
       beforeEach(() => {
         // runs before each test in the block
-        cy.visit('http://localhost:3000');
+        cy.visit('http://localhost:3000/userApp');
       });
   
       it('should have page title', () => {
