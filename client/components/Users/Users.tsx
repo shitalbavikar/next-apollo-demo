@@ -14,8 +14,11 @@ export const Users = () => {
     variables: { after: null }
   });
   
-  useEffect(() => messageRef.current?.scrollIntoView({behavior: "smooth"}));
-  
+  useEffect(() => {
+     messageRef.current?.scrollIntoView({behavior: "smooth"}
+  )},[data])
+
+
   const loadMoreUsersHandler = () => {
     const {endCursor} = data.users.pageInfo;
       
@@ -45,8 +48,8 @@ export const Users = () => {
                 return <UserCard key={uniqid()} userInfo = {user.node}/> })}
             </div>
           {/* </Suspense> */}
-            <div className={styles.userActions} ref={messageRef}>
-              <button className={styles.loadMoreButton} onClick={() => loadMoreUsersHandler()}>Load more</button>
+            <div className={styles.userActions} ref={messageRef} data-test="users-action-wrapper">
+              <button className={styles.loadMoreButton} onClick={() => loadMoreUsersHandler()} data-test="users-action-loadMore">Load more</button>
             </div>
         </React.Fragment>
       );

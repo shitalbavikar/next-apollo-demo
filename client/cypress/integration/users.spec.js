@@ -23,12 +23,20 @@ describe('Cypress', () => {
       });
   
       it('renders user-card details', () => {
-        // yield children of the Grid
         cy.get('[data-test=users-list-wrapper]').children();
+      });
+      it('renders 20 user cards on page load', () => {
+        cy.get('[data-test=users-list-wrapper]').children().should('have.length', 20)
       });
   
       it("has a 'Load More' button", () => {
-        cy.get('div').find('button').should('have.text', 'Load more');
+        cy.get('[data-test=users-action-wrapper]').find('button').should('have.text', 'Load more');
+      });
+      
+      it("Load More button click loads next 20 records and page scroll down to display new records", () => {
+        cy.get('[data-test=users-action-loadMore]').click();
+        cy.get('[data-test=users-list-wrapper]').children().should('have.length', 40);
+        cy.get('[data-test=users-action-wrapper]').scrollIntoView();
       });
     });
   });

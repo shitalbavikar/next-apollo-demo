@@ -14,12 +14,12 @@ export const UserCard = (props: IUserCard) => {
   const {firstName, lastName, address, email, phone} = props.userInfo;
   
   return (
-      <div className={styles.userCard}>
-            <div className={styles.userName}>
+      <div className={styles.userCard} data-test="user-card">
+            <div className={styles.userName}  data-test="users-Name">
                 <i className= {`fa fa-user ${styles.logo}`}/>
                   {firstName} {lastName}
             </div>
-            <div className={styles.userInfo}>
+            <div className={styles.userInfo} data-test="user-info">
                 <div className={styles.userEmail}>
                     <i className={`fa fa-envelope-o ${styles.logo}`}/>
                     {email}

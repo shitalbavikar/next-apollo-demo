@@ -6,10 +6,10 @@ import 'font-awesome/css/font-awesome.min.css'
 export default function userApp() {
  return (
    <>
-   <Link href="/"><a>Go Back</a></Link>
-     <ApolloProvider client={client}>
-       <Users/>
-     </ApolloProvider>
+      <Link href="/"><a>Go Back</a></Link>
+      <ApolloProvider client={client}>
+        <Users/>
+      </ApolloProvider>
   </>
  )
 }
