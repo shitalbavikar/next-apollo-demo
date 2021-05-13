@@ -38,9 +38,9 @@ export const Users = () => {
 
   if (loading) return <Spinner/>;
   
-  if (data && data.users.edges.length > 0) {
-      return (
-        <React.Fragment>
+ 
+ return (data && data.users.edges.length > 0 ? 
+      <React.Fragment>
           {/* <Suspense fallback={<Spinner />}> */}
             <h3 className={styles.usersListTitle} data-test="users-list-title">Users List</h3>
             <div className={styles.usersWrapper} data-test="users-list-wrapper">
@@ -52,6 +52,6 @@ export const Users = () => {
               <button className={styles.loadMoreButton} onClick={() => loadMoreUsersHandler()} data-test="users-action-loadMore">Load more</button>
             </div>
         </React.Fragment>
-      );
-  }
+      : null 
+      )
 } 

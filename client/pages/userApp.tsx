@@ -3,6 +3,7 @@ import { ApolloProvider} from "@apollo/client";
 import {Users} from '../components/Users/Users';
 import {client} from '../lib/apolloConfig';
 import 'font-awesome/css/font-awesome.min.css'
+
 export default function userApp() {
  return (
    <>
